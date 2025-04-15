@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@layer utilities{
+    .orange-gradient-cust{
+        background: rgb(254,215,170);
+        background: linear-gradient(90deg, rgba(254,215,170,1) 0%, rgba(253,186,116,1) 100%);
+    }
+    .orange-gradient-cust__80{
+        background: rgb(254,215,170);
+        background: linear-gradient(90deg, rgba(254,215,170,0.8) 0%, rgba(253,186,116,0.8) 100%);
+    }
+    .emerald-gradient-cust{
+        background: rgb(16,185,129);
+        background: linear-gradient(90deg, rgba(16,185,129,1) 0%, rgba(5,150,105,1) 100%);
+    }
+    .container{
+        @apply mx-auto xl:w-7xl p-4 lg:p-2.5
+
+    }
+    .flex-center{
+        @apply flex items-center justify-center
+    }
+    .ltr-text{
+        direction: ltr;
+        text-align: left;
+    }
+}
+.menu-hover::after{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #FDBA74;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+.menu-hover:hover::after{
+    width: 100%;
+    left: auto;
+    right: 0;
+}
+.menu-hover:not(:hover)::after{
+    transition: width 0.3s ease-in-out, right 0.3s ease-in-out;
+}
+.bg-header{
+    background-image: url("../img/headerBgDesktop.webp");
+}
+@media screen and (max-width: 1024px){
+    .bg-header{
+    background-image: url("../img/headerBgMobile.webp");
+    }
+}
+ @media screen and (min-width: 1024px) {
+    html.dark .products{
+        background-image: url(../public/img/body-bg.png);
+    }
+    .products{
+        background-image:linear-gradient(rgba(243, 244, 246, 0.65),rgba(243, 244, 246, 0.65)), url(../public/img/body-bg.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+ }
+ .services{
+    @apply relative
+ }
+ .services::after,
+ .services::before{
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    background-color: #D1D5DB;
+ }
+ @media screen and (min-width:600px) {
+    .services::after,
+    .services::before{
+        content: none;
+    }
+}
+ .services::after{
+    width: 1px;
+    height: calc(100% + 1.25rem);
+ }
+ .services::before{
+    width: calc(100% - 2rem);
+    height: 1px;
+ }
+ html.dark .services::after,
+ html.dark .services::before{
+    background-color: rgba(255,255,255,0.5);
+ }
+@layer components{
+    .submenu{
+        @apply hidden flex-col gap-y-3 pr-7 mt-3 text-secondary-zinc dark:text-white
+    }
+    .submenu--open{
+        @apply flex
+    }
+    .submenu_item--active::after{
+        content: "";
+        display: block;
+        background-color:#FDBA74;
+        width: 4px;
+        height: 4px;
+        border-radius: 100px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin:auto;
+
+    }
+    .submenu_item--active{
+        @apply relative text-primary-orange pr-2.5
+    }
+    .overlay{
+        @apply opacity-0 invisible min-[970px]:hidden fixed inset-0 bg-black/40 z-10 transition-all duration-300
+    }
+    .overlay--visible{
+        @apply opacity-100 visible
+    }
+    .section-title{
+        @apply text-2xl min-[970px]:text-5xl font-MorabbaMedium text-primary-zinc dark:text-white
+    }
+    .section-subtitle{
+        @apply inline-block text-lg min-[970px]:text-3xl mt-0.5 min-[970px]:mt-1.5 font-MorabbaLight text-primary-zinc dark:text-white
+    }
+    .section-link{
+        @apply flex items-center min-[970px]:gap-1 h-10 pr-3 pl-1 text-base min-[970px]:text-xl font-danaRegular tracking-tightest text-primary-orange md:hover:bg-primary-orange/20 rounded-md transition-colors duration-300
+    }
+    .offer{
+        @apply relative text-primary-gray
+    }
+    .offer::after{
+        content: "";
+        width: 100%;
+        height: 1.5px;
+        position: absolute;
+        inset: 0;
+        top: -2px;
+        margin: auto;
+        background-color: #ef4444;
+    }
+    .category-banner__item1{
+        background-image:linear-gradient(270deg , rgba(0, 0, 0, 0.6) 33.85%,rgba(0, 0, 0, 0.1) 100%), url(../public/img/categories/category-right.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .category-banner__item2{
+        background-image:linear-gradient(270deg , rgba(0, 0, 0, 0.6) 33.85%,rgba(0, 0, 0, 0.1) 100%), url(../public/img//categories/category-left.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .curve{
+        @apply flex items-center justify-center border rounded-full
+    }
+}
+    @font-face {
+        font-family: danaRegular;
+        src: url("../public/font/Dana/woff2/DanaFaNum-Regular.woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: danaMedium;
+        src: url("../public/font/Dana/woff2/DanaFaNum-Medium.woff2");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: danaDemiBold;
+        src: url("../public/font/Dana/woff2/DanaFaNum-DemiBold.woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: MorabbaLight;
+        src: url("../public/font/Morabba/woff2/Morabba-Light.woff2");
+        font-weight: 200;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: MorabbaMedium;
+        src: url("../public/font/Morabba/woff2/Morabba-Medium.woff2");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: MorabbaBold;
+        src: url("../public/font/Morabba/woff2/Morabba-Bold.woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
+@theme{
+    --color-primary-orange:var(--color-orange-300);
+    --color-secondary-orange:var(--color-orange-200);
+    --color-primary-teal:var(--color-teal-700);
+    --color-secondary-teal:var(--color-teal-600);
+    --color-primary-emerald:var(--color-emerald-600);
+    --color-secondary-emerald:var(--color-emerald-500);
+    --color-primary-red:var(--color-red-400);
+    --color-primary-yellow:var(--color-yellow-400);
+    --color-primary-amber:var(--color-amber-900);
+    --color-primary-gray:var(--color-gray-400);
+    --color-secondary-gray:var(--color-gray-300);
+    --color-tertiary-gray:var(--color-gray-100);
+    --color-primary-zinc:var(--color-zinc-700);
+    --color-secondary-zinc:var(--color-zinc-600);
+    --color-brown-100: #ECE0D1;
+    --color-brown-300: #DBC1AC;
+    --color-brown-600: #967259;
+    --color-brown-900:#634832;
+    --shadow-custom: 0px 1px 10px rgba(0, 0, 0, 0.05);
+    --radius-4xl: 2rem; 
+    --tracking-tightest: -0.065em;
+    --breakpoint-xs:480px;
+    --font-danaRegular:danaRegular;
+    --font-danaMedium:danaMedium;
+    --font-danaDemiBold:danaDemiBold;
+    --font-MorabbaLight:MorabbaLight;
+    --font-MorabbaMedium:MorabbaMedium;
+    --font-MorabbaBold:MorabbaBold;
+}
